@@ -1,9 +1,14 @@
     #include "FastLED.h"
     #define COLOR_ORDER GRB
+const int buttonPin1 = 2;
+const int buttonPin2 = 8;
+long Color = 0;
 
 CRGB blinkBackup[85];
 CRGB leds[85];
-void setup() {
+void setup() {  
+  pinMode(buttonPin1, INPUT);
+  pinMode(buttonPin2, INPUT);
   // put your setup code here, to run once:
   FastLED.addLeds<WS2811, 5, COLOR_ORDER>(leds, 85); 
 }
@@ -19,7 +24,7 @@ int Sense(int InputNum) {
 
 
 void Scroll(long col1, long col2, long col3, long col4, long col5, int stay) {
-//Creates a scrolling effect for each induvidual line by moving each light value left
+//Creates a scrolling effect for each induvidual line by moving each light value left one light
 //First five inputs are the five rightmost lights, bottom to top
 //Last input is the number of lights, right-to-left, that the scrolling ignores
   for ( int i = 16-stay; i > 0; i--) {
@@ -54,11 +59,21 @@ void Scroll(long col1, long col2, long col3, long col4, long col5, int stay) {
   leds[68] = col5; FastLED.show(); delay(250);
 }
 
-
-
+void ScrollV(long Col,int Hpos) {
+//scrolls, but vertically
+//Col is the color of the new led, Hpos is the position of the bottommost light in the column of choice
+//Dir is the direction, up or down. WIP
+  for (int i = 0; i<4; i++) {
+    leds[Sense(Hpos + (17*i))] = leds[Sense(Hpos + (17*(i+1)))];
+    }
+  leds[Sense(Hpos + 68)] = Col;
+  FastLED.show(); delay(250);
+}
 
 void SetupBlink() {
-//stores the current set of lights that are on in another variable; only needs to be done once if blink() is used multiple times without changing the lights
+//stores the current set of lights that are on in another variable
+//recalled during the blink() function
+//only needs to be done once if blink() is used multiple times without changing the light configuration
   for ( int i = 0; i < 85; i++) {
     blinkBackup[i] = leds[i];
   }
@@ -66,7 +81,7 @@ void SetupBlink() {
 
 
 void Blink() {
-//flashes black for half a second. Use SetupBlink() first
+//flashes black for half a second. Use SetupBlink() first or else it will not work
   for ( int i = 0; i < 85; i++) {
     leds[i] = CRGB::Black;
   }
@@ -80,31 +95,47 @@ void Blink() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  // put your main code here, to run repeatedly: 
+ScrollV(CRGB::Red,1);
+ScrollV(CRGB::Red,1);
+ScrollV(CRGB::Black,1);
+ScrollV(CRGB::Red,1);
+ScrollV(CRGB::Red,1);
+ScrollV(CRGB::Black,1);
 
-  Scroll(CRGB::Blue, CRGB::Black, CRGB::Blue, CRGB::Black, CRGB::Blue, 0);
-  Scroll(CRGB::Blue, CRGB::Black, CRGB::Blue, CRGB::Black, CRGB::Blue, 0);
-  Scroll(CRGB::Blue, CRGB::Blue, CRGB::Blue, CRGB::Blue, CRGB::Blue, 0);
+/*   while (Color == 0) {//color select. Use for alliance
+  if (digitalRead(buttonPin1) == HIGH) {
+    Color = CRGB::Blue;
+    }
+  if (digitalRead(buttonPin2) == HIGH) {
+    Color = CRGB::Red;
+    }
+  }
+
+  
+  Scroll(Color, CRGB::Black, Color, CRGB::Black, Color, 0);
+  Scroll(Color, CRGB::Black, Color, CRGB::Black, Color, 0);
+  Scroll(Color, Color, Color, Color, Color, 0); //3
   for ( int i = 0; i < 14; i++){
     Scroll(CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black, 0);
     }
-  Scroll(CRGB::Blue, CRGB::Black, CRGB::Blue, CRGB::Black, CRGB::Blue, 4);
-  Scroll(CRGB::Blue, CRGB::Black, CRGB::Blue, CRGB::Black, CRGB::Blue, 4);
-  Scroll(CRGB::Blue, CRGB::Blue, CRGB::Blue, CRGB::Blue, CRGB::Blue, 4);
+  Scroll(Color, CRGB::Black, Color, CRGB::Black, Color, 4);
+  Scroll(Color, CRGB::Black, Color, CRGB::Black, Color, 4);
+  Scroll(Color, Color, Color, Color, Color, 4); //3
   for ( int i = 0; i < 10; i++){
     Scroll(CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black, 4);
     }
-  
-  Scroll(CRGB::Blue, CRGB::Blue, CRGB::Blue, CRGB::Black, CRGB::Blue, 8);
-  Scroll(CRGB::Blue, CRGB::Black, CRGB::Blue, CRGB::Black, CRGB::Blue, 8);
-  Scroll(CRGB::Blue, CRGB::Black, CRGB::Blue, CRGB::Blue, CRGB::Blue, 8);
+
+  Scroll(Color, Color, Color, CRGB::Black, Color, 8);
+  Scroll(Color, CRGB::Black, Color, CRGB::Black, Color, 8);
+  Scroll(Color, CRGB::Black, Color, Color, Color, 8); //2
   for ( int i = 0; i < 6; i++){
     Scroll(CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black, 8);
     }
 
-  Scroll(CRGB::Blue, CRGB::Blue, CRGB::Blue, CRGB::Black, CRGB::Blue, 12);
-  Scroll(CRGB::Blue, CRGB::Black, CRGB::Blue, CRGB::Black, CRGB::Blue, 12);
-  Scroll(CRGB::Blue, CRGB::Black, CRGB::Blue, CRGB::Blue, CRGB::Blue, 12);
+  Scroll(Color, Color, Color, CRGB::Black, Color, 12);
+  Scroll(Color, CRGB::Black, Color, CRGB::Black, Color, 12);
+  Scroll(Color, CRGB::Black, Color, Color, Color, 12); //2
 
   for ( int i = 0; i < 2; i++){
     Scroll(CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black, 12);
@@ -119,4 +150,5 @@ void loop() {
   for ( int i = 0; i < 17; i++){
     Scroll(CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black, 0);
     }
+*/
 }
