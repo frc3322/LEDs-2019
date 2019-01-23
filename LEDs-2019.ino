@@ -4,6 +4,7 @@ const int buttonPin1 = 2;
 const int buttonPin2 = 8;
 long Color = 0;
 
+
 CRGB blinkBackup[85];
 CRGB leds[85];
 void setup() {  
@@ -11,7 +12,8 @@ void setup() {
   pinMode(buttonPin2, INPUT);
   // put your setup code here, to run once:
   FastLED.addLeds<WS2811, 5, COLOR_ORDER>(leds, 85); 
-}
+  randomSeed(analogRead(0)); 
+  }
 
 int Sense(int InputNum) {
   //Array of lights features alternating direction of lights. This is a fix
@@ -59,6 +61,41 @@ void Scroll(long col1, long col2, long col3, long col4, long col5, int stay) {
   leds[68] = col5; FastLED.show(); delay(250);
 }
 
+void Sclorr(long col1, long col2, long col3, long col4, long col5, int stay) {
+//Copy-and-paste of scroll() but flipped along the y-axis
+//if the name looks weird, it's because the r's and l's in the name were swapped too
+  for ( int i = 0+stay; i < 16; i++) {
+    
+    leds[i]=leds[i+1];
+    }
+
+  for ( int i = 17+stay; i < 33; i++) {
+      
+    leds[Sense(i)]=leds[Sense(i+1)];
+    }
+
+  for ( int i = 34+stay; i < 50; i++) {
+      
+    leds[i]=leds[i+1];
+    }
+
+  for ( int i = 51+stay; i < 67; i++) {
+      
+    leds[Sense(i)]=leds[Sense(i+1)];
+    }
+
+  for ( int i = 68+stay; i < 84; i++) {
+      
+    leds[i]=leds[i+1];
+    }
+
+  leds[16] = col1;
+  leds[Sense(33)] = col2;
+  leds[50] = col3;
+  leds[Sense(67)] = col4;
+  leds[84] = col5; FastLED.show(); delay(250);
+}
+
 void ScrollV(long Col,int Hpos, int Dir) {
 //scrolls, but vertically
 //Col is the color of the new led, Hpos is the position of the bottommost (or topmost, if going up) light in the column of choice
@@ -98,71 +135,103 @@ void Blink() {
 void loop() {
   // put your main code here, to run repeatedly: 
   
-  
+  Sclorr(CRGB::Blue,CRGB::Blue,CRGB::Blue,CRGB::Blue,CRGB::Blue,8);  
+  Sclorr(CRGB::Blue,CRGB::Black,CRGB::Blue,CRGB::Black,CRGB::Blue,8);
+  Sclorr(CRGB::Blue,CRGB::Black,CRGB::Blue,CRGB::Black,CRGB::Blue,8);
+  Sclorr(CRGB::Black,CRGB::Black,CRGB::Black,CRGB::Black,CRGB::Black, 8);
+
+  Sclorr(CRGB::Blue,CRGB::Blue,CRGB::Blue,CRGB::Blue,CRGB::Blue,8);  
+  Sclorr(CRGB::Blue,CRGB::Black,CRGB::Blue,CRGB::Black,CRGB::Blue,8);
+  Sclorr(CRGB::Blue,CRGB::Black,CRGB::Blue,CRGB::Black,CRGB::Blue,8);
+  Sclorr(CRGB::Black,CRGB::Black,CRGB::Black,CRGB::Black,CRGB::Black,8);
+
+  Scroll(CRGB::Blue, CRGB::Blue, CRGB::Blue, CRGB::Black, CRGB::Blue, 8);
+  Scroll(CRGB::Blue, CRGB::Black, CRGB::Blue, CRGB::Black, CRGB::Blue, 8);
+  Scroll(CRGB::Blue, CRGB::Black, CRGB::Blue, CRGB::Blue, CRGB::Blue, 8); 
+  Scroll(CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black, 8);
+    
+  Scroll(CRGB::Blue, CRGB::Blue, CRGB::Blue, CRGB::Black, CRGB::Blue, 8);
+  Scroll(CRGB::Blue, CRGB::Black, CRGB::Blue, CRGB::Black, CRGB::Blue, 8);
+  Scroll(CRGB::Blue, CRGB::Black, CRGB::Blue, CRGB::Blue, CRGB::Blue, 8); 
+  Scroll(CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black, 8);
+ Blink(); 
+ 
+ /*    while (Color == 0) {//color select. Use for alliance
+
+    if (digitalRead(buttonPin1) == HIGH) {
+    Color = CRGB::Blue;
+    }
+  if (digitalRead(buttonPin2) == HIGH) {
+    Color = CRGB::Red;
+    }
+
+  }
+
+  if (random(2) == 1) {
    
-   ScrollV(CRGB::Red,84,-1);  
-   ScrollV(CRGB::Red,83,-1);  
-   ScrollV(CRGB::Red,82,-1);  FastLED.show(); delay(250);
+   ScrollV(Color,84,-1);  
+   ScrollV(Color,83,-1);  
+   ScrollV(Color,82,-1);  FastLED.show(); delay(250);
    ScrollV(CRGB::Black,84,-1);  
    ScrollV(CRGB::Black,83,-1);  
-   ScrollV(CRGB::Red,82,-1);  FastLED.show(); delay(250);
-   ScrollV(CRGB::Red,84,-1);  
-   ScrollV(CRGB::Red,83,-1);  
-   ScrollV(CRGB::Red,82,-1);  FastLED.show(); delay(250);
+   ScrollV(Color,82,-1);  FastLED.show(); delay(250);
+   ScrollV(Color,84,-1);  
+   ScrollV(Color,83,-1);  
+   ScrollV(Color,82,-1);  FastLED.show(); delay(250);
    ScrollV(CRGB::Black,84,-1);  
    ScrollV(CRGB::Black,83,-1);  
-   ScrollV(CRGB::Red,82,-1);  FastLED.show(); delay(250);
-   ScrollV(CRGB::Red,84,-1);  
-   ScrollV(CRGB::Red,83,-1);  
-   ScrollV(CRGB::Red,82,-1);  FastLED.show(); delay(250);
+   ScrollV(Color,82,-1);  FastLED.show(); delay(250);
+   ScrollV(Color,84,-1);  
+   ScrollV(Color,83,-1);  
+   ScrollV(Color,82,-1);  FastLED.show(); delay(250);
 
-   ScrollV(CRGB::Red,12,1);  
-   ScrollV(CRGB::Red,11,1);  
-   ScrollV(CRGB::Red,10,1);  FastLED.show(); delay(250);
+   ScrollV(Color,12,1);  
+   ScrollV(Color,11,1);  
+   ScrollV(Color,10,1);  FastLED.show(); delay(250);
    ScrollV(CRGB::Black,12,1);  
    ScrollV(CRGB::Black,11,1);  
-   ScrollV(CRGB::Red,10,1);  FastLED.show(); delay(250);
-   ScrollV(CRGB::Red,12,1);  
-   ScrollV(CRGB::Red,11,1);  
-   ScrollV(CRGB::Red,10,1);  FastLED.show(); delay(250);
+   ScrollV(Color,10,1);  FastLED.show(); delay(250);
+   ScrollV(Color,12,1);  
+   ScrollV(Color,11,1);  
+   ScrollV(Color,10,1);  FastLED.show(); delay(250);
    ScrollV(CRGB::Black,12,1);  
    ScrollV(CRGB::Black,11,1);  
-   ScrollV(CRGB::Red,10,1);  FastLED.show(); delay(250);
-   ScrollV(CRGB::Red,12,1);  
-   ScrollV(CRGB::Red,11,1);  
-   ScrollV(CRGB::Red,10,1);  FastLED.show(); delay(250);
+   ScrollV(Color,10,1);  FastLED.show(); delay(250);
+   ScrollV(Color,12,1);  
+   ScrollV(Color,11,1);  
+   ScrollV(Color,10,1);  FastLED.show(); delay(250);
 
-   ScrollV(CRGB::Red,76,-1);  
-   ScrollV(CRGB::Red,75,-1);  
-   ScrollV(CRGB::Red,74,-1);  FastLED.show(); delay(250);
+   ScrollV(Color,76,-1);  
+   ScrollV(Color,75,-1);  
+   ScrollV(Color,74,-1);  FastLED.show(); delay(250);
    ScrollV(CRGB::Black,76,-1);  
    ScrollV(CRGB::Black,75,-1);  
-   ScrollV(CRGB::Red,74,-1);  FastLED.show(); delay(250);
-   ScrollV(CRGB::Red,76,-1);  
-   ScrollV(CRGB::Red,75,-1);  
-   ScrollV(CRGB::Red,74,-1);  FastLED.show(); delay(250);
-   ScrollV(CRGB::Red,76,-1);  
+   ScrollV(Color,74,-1);  FastLED.show(); delay(250);
+   ScrollV(Color,76,-1);  
+   ScrollV(Color,75,-1);  
+   ScrollV(Color,74,-1);  FastLED.show(); delay(250);
+   ScrollV(Color,76,-1);  
    ScrollV(CRGB::Black,75,-1);  
    ScrollV(CRGB::Black,74,-1);  FastLED.show(); delay(250);
-   ScrollV(CRGB::Red,76,-1);  
-   ScrollV(CRGB::Red,75,-1);  
-   ScrollV(CRGB::Red,74,-1);  FastLED.show(); delay(250);
+   ScrollV(Color,76,-1);  
+   ScrollV(Color,75,-1);  
+   ScrollV(Color,74,-1);  FastLED.show(); delay(250);
    
-   ScrollV(CRGB::Red,4,1);  
-   ScrollV(CRGB::Red,3,1);  
-   ScrollV(CRGB::Red,2,1);  FastLED.show(); delay(250);
-   ScrollV(CRGB::Red,4,1);  
+   ScrollV(Color,4,1);  
+   ScrollV(Color,3,1);  
+   ScrollV(Color,2,1);  FastLED.show(); delay(250);
+   ScrollV(Color,4,1);  
    ScrollV(CRGB::Black,3,1);  
    ScrollV(CRGB::Black,2,1);  FastLED.show(); delay(250);
-   ScrollV(CRGB::Red,4,1);  
-   ScrollV(CRGB::Red,3,1);  
-   ScrollV(CRGB::Red,2,1);  FastLED.show(); delay(250);
+   ScrollV(Color,4,1);  
+   ScrollV(Color,3,1);  
+   ScrollV(Color,2,1);  FastLED.show(); delay(250);
    ScrollV(CRGB::Black,4,1);  
    ScrollV(CRGB::Black,3,1);  
-   ScrollV(CRGB::Red,2,1);  FastLED.show(); delay(250);
-   ScrollV(CRGB::Red,4,1);  
-   ScrollV(CRGB::Red,3,1);  
-   ScrollV(CRGB::Red,2,1);  FastLED.show(); delay(250);
+   ScrollV(Color,2,1);  FastLED.show(); delay(250);
+   ScrollV(Color,4,1);  
+   ScrollV(Color,3,1);  
+   ScrollV(Color,2,1);  FastLED.show(); delay(250);
 
    SetupBlink();
    Blink();
@@ -171,15 +240,9 @@ void loop() {
     for ( int i = 0; i < 17; i++) {
       Scroll(CRGB::Black,CRGB::Black,CRGB::Black,CRGB::Black,CRGB::Black,0);
       }
-/*   
-   while (Color == 0) {//color select. Use for alliance
-  if (digitalRead(buttonPin1) == HIGH) {
-    Color = CRGB::Blue;
-    }
-  if (digitalRead(buttonPin2) == HIGH) {
-    Color = CRGB::Red;
-    }
   }
+
+  else{
 
  
   Scroll(Color, CRGB::Black, Color, CRGB::Black, Color, 0);
@@ -205,7 +268,9 @@ void loop() {
   Scroll(Color, Color, Color, CRGB::Black, Color, 12);
   Scroll(Color, CRGB::Black, Color, CRGB::Black, Color, 12);
   Scroll(Color, CRGB::Black, Color, Color, Color, 12); //2
-
+  if ((digitalRead(buttonPin2) == HIGH) and (digitalRead(buttonPin1) == HIGH)) {
+    Color = CRGB::Green; 
+    }  
   for ( int i = 0; i < 2; i++){
     Scroll(CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black, 12);
     }
@@ -218,5 +283,6 @@ void loop() {
 
   for ( int i = 0; i < 17; i++){
     Scroll(CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black, 0);
-    } */
-}
+    } 
+  }
+*/}
