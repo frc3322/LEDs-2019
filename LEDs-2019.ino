@@ -318,6 +318,7 @@ void loop() {
   Sclorr(Color, CRGB::Black, Color, Color, CRGB::Black, 0);  
   Sclorr(Color, CRGB::Black, Color, CRGB::Black, Color, 0);
   Sclorr(Color, Color, CRGB::Black, CRGB::Black, Color, 0);//2
+  Sclorr(CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black, 0);
 
   Sclorr(CRGB::Black, Color, CRGB::Black, Color, CRGB::Black, 0);
   Sclorr(Color, CRGB::Black, Color, CRGB::Black, Color, 0);
@@ -373,4 +374,4 @@ void loop() {
 //Block scroll        250
 //Scroll in left      286
 //Scroll in right     310
-//Exit Patterns       341
+//Exit Patterns       342
