@@ -153,73 +153,73 @@ void loop() {
     }
   }
   
-  long PatternOut = random(3);
+  long PatternOut = random(4);
   long PatternIn = random(5);
   if (PatternIn == 2) {// scroll each letter --up then --down then --up --down
    
-     ScrollV(Color,84,-1);  
      ScrollV(Color,83,-1);  
-     ScrollV(CRGB::Black,82,-1);  FastLED.show(); delay(250);
-     ScrollV(CRGB::Black,84,-1);  
+     ScrollV(Color,82,-1);  
+     ScrollV(CRGB::Black,81,-1);  FastLED.show(); delay(250);
      ScrollV(CRGB::Black,83,-1);  
-     ScrollV(Color,82,-1);  FastLED.show(); delay(250);
-     ScrollV(Color,84,-1);  
+     ScrollV(CRGB::Black,82,-1);  
+     ScrollV(Color,81,-1);  FastLED.show(); delay(250);
      ScrollV(Color,83,-1);  
-     ScrollV(CRGB::Black,82,-1);  FastLED.show(); delay(250);
-     ScrollV(CRGB::Black,84,-1);  
+     ScrollV(Color,82,-1);  
+     ScrollV(CRGB::Black,81,-1);  FastLED.show(); delay(250);
      ScrollV(CRGB::Black,83,-1);  
-     ScrollV(Color,82,-1);  FastLED.show(); delay(250);
-     ScrollV(Color,84,-1);  
+     ScrollV(CRGB::Black,82,-1);  
+     ScrollV(Color,81,-1);  FastLED.show(); delay(250);
      ScrollV(Color,83,-1);  
-     ScrollV(CRGB::Black,82,-1);  FastLED.show(); delay(250);//3
+     ScrollV(Color,82,-1);  
+     ScrollV(CRGB::Black,81,-1);  FastLED.show(); delay(250);//3
 
-     ScrollV(Color,12,1);  
-     ScrollV(Color,11,1);  
-     ScrollV(CRGB::Black,10,1);  FastLED.show(); delay(250);
-     ScrollV(CRGB::Black,12,1);  
+     ScrollV(Color,11,1);
+     ScrollV(Color,10,1);
+     ScrollV(CRGB::Black,9,1);  FastLED.show(); delay(250);
      ScrollV(CRGB::Black,11,1);  
-     ScrollV(Color,10,1);  FastLED.show(); delay(250);
-     ScrollV(Color,12,1);  
+     ScrollV(CRGB::Black,10,1);  
+     ScrollV(Color,9,1);  FastLED.show(); delay(250);
      ScrollV(Color,11,1);  
-     ScrollV(CRGB::Black,10,1);  FastLED.show(); delay(250);
-     ScrollV(CRGB::Black,12,1);  
+     ScrollV(Color,10,1);  
+     ScrollV(CRGB::Black,9,1);  FastLED.show(); delay(250);
      ScrollV(CRGB::Black,11,1);  
-     ScrollV(Color,10,1);  FastLED.show(); delay(250);
-     ScrollV(Color,12,1);  
+     ScrollV(CRGB::Black,10,1);  
+     ScrollV(Color,9,1);  FastLED.show(); delay(250);
      ScrollV(Color,11,1);  
-     ScrollV(CRGB::Black,10,1);  FastLED.show(); delay(250);//3
+     ScrollV(Color,10,1);  
+     ScrollV(CRGB::Black,9,1);  FastLED.show(); delay(250);//3
 
-     ScrollV(Color,76,-1);  
      ScrollV(Color,75,-1);  
-     ScrollV(CRGB::Black,74,-1);  FastLED.show(); delay(250);
-     ScrollV(CRGB::Black,76,-1);  
+     ScrollV(Color,74,-1);  
+     ScrollV(CRGB::Black,73,-1);  FastLED.show(); delay(250);
      ScrollV(CRGB::Black,75,-1);  
-     ScrollV(Color,74,-1);  FastLED.show(); delay(250);
-     ScrollV(CRGB::Black,76,-1);  
-     ScrollV(Color,75,-1);  
-     ScrollV(Color,74,-1);  FastLED.show(); delay(250);
-     ScrollV(Color,76,-1);  
+     ScrollV(CRGB::Black,74,-1);  
+     ScrollV(Color,73,-1);  FastLED.show(); delay(250);
      ScrollV(CRGB::Black,75,-1);  
-     ScrollV(CRGB::Black,74,-1);  FastLED.show(); delay(250);
-     ScrollV(Color,76,-1);  
+     ScrollV(Color,74,-1);  
+     ScrollV(Color,73,-1);  FastLED.show(); delay(250);
      ScrollV(Color,75,-1);  
-     ScrollV(Color,74,-1);  FastLED.show(); delay(250);//2
+     ScrollV(CRGB::Black,74,-1);  
+     ScrollV(CRGB::Black,73,-1);  FastLED.show(); delay(250);
+     ScrollV(Color,75,-1);  
+     ScrollV(Color,74,-1);  
+     ScrollV(Color,73,-1);  FastLED.show(); delay(250);//2
    
-     ScrollV(Color,4,1);  
      ScrollV(Color,3,1);  
-     ScrollV(Color,2,1);  FastLED.show(); delay(250);
-     ScrollV(Color,4,1);  
+     ScrollV(Color,2,1);  
+     ScrollV(Color,1,1);  FastLED.show(); delay(250);
+     ScrollV(Color,3,1);  
+     ScrollV(CRGB::Black,2,1);  
+     ScrollV(CRGB::Black,1,1);  FastLED.show(); delay(250);
      ScrollV(CRGB::Black,3,1);  
-     ScrollV(CRGB::Black,2,1);  FastLED.show(); delay(250);
-     ScrollV(CRGB::Black,4,1);  
-     ScrollV(Color,3,1);  
-     ScrollV(Color,2,1);  FastLED.show(); delay(250);
-     ScrollV(CRGB::Black,4,1);  
+     ScrollV(Color,2,1);  
+     ScrollV(Color,1,1);  FastLED.show(); delay(250);
      ScrollV(CRGB::Black,3,1);  
-     ScrollV(Color,2,1);  FastLED.show(); delay(250);
-     ScrollV(Color,4,1);  
+     ScrollV(CRGB::Black,2,1);  
+     ScrollV(Color,1,1);  FastLED.show(); delay(250);
      ScrollV(Color,3,1);  
-     ScrollV(CRGB::Black,2,1);  FastLED.show(); delay(250);//2
+     ScrollV(Color,2,1);  
+     ScrollV(CRGB::Black,1,1);  FastLED.show(); delay(250);//2
   }
 
   if (PatternIn == 1) {//scroll in from both sides
@@ -253,20 +253,20 @@ void loop() {
   Scroll(Color, CRGB::Black, Color, CRGB::Black, Color, 0);
   Scroll(Color, CRGB::Black, Color, CRGB::Black, Color, 0);
   Scroll(CRGB::Black, Color, CRGB::Black, Color, CRGB::Black, 0); //3
-  for ( int i = 0; i < 14; i++){
+  for ( int i = 0; i < 13; i++){
     Scroll(CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black, 0);
     }
-  Scroll(Color, CRGB::Black, Color, CRGB::Black, Color, 4);
-  Scroll(Color, CRGB::Black, Color, CRGB::Black, Color, 4);
-  Scroll(CRGB::Black, Color, CRGB::Black, Color, CRGB::Black, 4); //3
-  for ( int i = 0; i < 10; i++){
+  Scroll(Color, CRGB::Black, Color, CRGB::Black, Color, 5);
+  Scroll(Color, CRGB::Black, Color, CRGB::Black, Color, 5);
+  Scroll(CRGB::Black, Color, CRGB::Black, Color, CRGB::Black, 5); //3
+  for ( int i = 0; i < 9; i++){
     Scroll(CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black, 4);
     }
 
   Scroll(Color, Color, CRGB::Black, CRGB::Black, Color, 8);
   Scroll(Color, CRGB::Black, Color, CRGB::Black, Color, 8);
   Scroll(Color, CRGB::Black, Color, Color, CRGB::Black, 8); //2
-  for ( int i = 0; i < 6; i++){
+  for ( int i = 0; i < 5; i++){
     Scroll(CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black, 8);
     }
 
@@ -276,10 +276,7 @@ void loop() {
   if ((digitalRead(buttonPin2) == HIGH) and (digitalRead(buttonPin1) == HIGH)) {
     Color = CRGB::Green; 
     }  
-  for ( int i = 0; i < 2; i++){
     Scroll(CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black, 12);
-    }
-
 
   }
 
@@ -312,7 +309,7 @@ void loop() {
   Sclorr(Color, CRGB::Black, Color, Color, CRGB::Black, 0);
   Sclorr(Color, CRGB::Black, Color, CRGB::Black, Color, 0);
   Sclorr(Color, Color, CRGB::Black, CRGB::Black, Color, 0); //2
-    Sclorr(CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black, 0);
+  Sclorr(CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black, 0);
     
 
   Sclorr(Color, CRGB::Black, Color, Color, CRGB::Black, 0);  
@@ -328,8 +325,7 @@ void loop() {
   Sclorr(CRGB::Black, Color, CRGB::Black, Color, CRGB::Black, 0);   
   Sclorr(Color, CRGB::Black, Color, CRGB::Black, Color, 0);
   Sclorr(Color, CRGB::Black, Color, CRGB::Black, Color, 0);//3
-    Sclorr(CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black,0);
-  Sclorr(CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black, 0);
+  Sclorr(CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black,0);
   }
    
   delay(1000);
@@ -358,7 +354,47 @@ void loop() {
       }
     }
   }
-
+  if (PatternOut == 3) {
+    leds[1] = CRGB::Black; leds[2] = CRGB::Black; leds[5] = CRGB::Black; leds[11] = CRGB::Black;
+    leds[14] = CRGB::Black; leds[15] = CRGB::Black; leds[Sense(20)] = CRGB::Black; leds[Sense(30)] = CRGB::Black;
+    leds[35] = CRGB::Black; leds[36] = CRGB::Black; leds[39] = CRGB::Black; leds[45] = CRGB::Black; leds[48] = CRGB::Black;
+    leds[49] = CRGB::Black; leds[Sense(52)] = CRGB::Black; leds[Sense(56)] = CRGB::Black; leds[Sense(64)] = CRGB::Black;
+    leds[70] = CRGB::Black; leds[71] = CRGB::Black; leds[74] = CRGB::Black; leds[79] = CRGB::Black;
+    leds[82] = CRGB::Black;  leds[83] = CRGB::Black;
+    leds[4] = Color; leds[13] = Color; leds[Sense(21)] = Color; leds[Sense(29)] = Color; leds[38] = Color;
+    leds[43] = Color; leds[46] = Color; leds[47] = Color; leds[Sense(54)] = Color; leds[Sense(57)] = Color;
+    leds[Sense(63)] = Color; leds[72] = Color; leds[81] = Color;
+    FastLED.show();
+    delay(100);
+    
+    leds[3] = CRGB::Black; leds[4] = CRGB::Black; leds[6] = CRGB::Black; leds[7] = CRGB::Black; leds[10] = CRGB::Black;
+    leds[13] = CRGB::Black; leds[40] = CRGB::Black; leds[44] = CRGB::Black; leds[47] = CRGB::Black; leds[Sense(54)] = CRGB::Black; 
+    leds[Sense(57)] = CRGB::Black; leds[72] = CRGB::Black; leds[75] = CRGB::Black; leds[78] = CRGB::Black; leds[81] = CRGB::Black;
+    leds[Sense(20)] = Color; leds[Sense(23)] = Color; leds[Sense(27)] = Color; leds[Sense(30)] = Color; leds[41] = Color;
+    leds[42] = Color; leds[45] = Color; leds[Sense(55)] = Color; leds[Sense(56)] = Color; leds[Sense(58)] = Color;
+    leds[Sense(59)] = Color; leds[Sense(61)] = Color; leds[Sense(64)] = Color;
+    FastLED.show();
+    delay(100);
+    leds[Sense(20)] = CRGB::Black; leds[Sense(21)] = CRGB::Black; leds[Sense(23)] = CRGB::Black; leds[Sense(24)] = CRGB::Black;
+    leds[Sense(26)] = CRGB::Black; leds[Sense(27)] = CRGB::Black; leds[Sense(29)] = CRGB::Black; leds[Sense(30)] = CRGB::Black;
+    leds[38] = CRGB::Black; leds[45] = CRGB::Black; leds[46] = CRGB::Black; leds[Sense(55)] = CRGB::Black;
+    leds[Sense(56)] = CRGB::Black; leds[Sense(58)] = CRGB::Black; leds[Sense(59)] = CRGB::Black; leds[Sense(60)] = CRGB::Black;
+    leds[Sense(61)] = CRGB::Black; leds[Sense(63)] = CRGB::Black; leds[Sense(64)] = CRGB::Black;
+    leds[Sense(40)] = Color; leds[Sense(44)] = Color;
+    FastLED.show();
+    delay(100);
+    leds[Sense(40)] = CRGB::Black; leds[Sense(41)] = CRGB::Black; leds[Sense(43)] = CRGB::Black; leds[Sense(44)] = CRGB::Black;
+    FastLED.show();
+    delay(100);
+    leds[8] = Color; leds[Sense(25)] = Color; leds[Sense(59)] = Color; leds[76] = Color;
+    FastLED.show();
+    delay(100);
+    leds[8] = CRGB::Black; leds[Sense(25)] = CRGB::Black; leds[Sense(42)] = CRGB::Black;
+    leds[Sense(59)] = CRGB::Black; leds[76] = CRGB::Black;
+    FastLED.show();
+    delay(300);
+    
+    }
 }
 //Index               Values may not be absolute due to neglect
 //function            Code Line
