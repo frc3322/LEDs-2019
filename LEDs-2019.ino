@@ -1,20 +1,31 @@
     #include "FastLED.h"
+    #include <Wire.h>
     #define COLOR_ORDER GRB
 const int buttonPin1 = 2;
 const int buttonPin2 = 8;
 long Color = 0;
-
+int ColorRecieve = 0;
+int LED = 13;
 
 
 CRGB blinkBackup[85];
 CRGB leds[85];
-void setup() {  
+void setup() { 
+  Serial.begin(9600); 
   pinMode(buttonPin1, INPUT);
   pinMode(buttonPin2, INPUT);
   FastLED.addLeds<WS2811, 5, COLOR_ORDER>(leds, 85); 
   randomSeed(analogRead(0)); 
+  Wire.begin(4); 
+  Wire.onReceive(receiveEvent);
+   Serial.println(ColorRecieve);
   }
 
+void receiveEvent(int bytes) {
+ ColorRecieve = Wire.read();
+   Serial.println(ColorRecieve); 
+
+}
 
 int Sense(int InputNum) {
   //Array of lights features alternating direction of lights. This is a fix
@@ -28,7 +39,7 @@ int Sense(int InputNum) {
 
 void Scroll(long col1, long col2, long col3, long col4, long col5, int stay) {
 //Creates a scrolling effect for each induvidual line by moving each light value left one light
-//First five inputs are the five rightmost lights, bottom to top
+//First five inputs are the five new rightmost lights, bottom to top
 //Last input is the number of lights, right-to-left, that the scrolling ignores
   for ( int i = 16-stay; i > 0; i--) {
     
@@ -141,17 +152,16 @@ void Blink() {
 void loop() {
   // put your main code here, to run repeatedly: 
   
+/*  while (Color == 0) {//color select. Use for alliance
 
- 
-  while (Color == 0) {//color select. Use for alliance
-
-    if (digitalRead(buttonPin1) == HIGH) {
+    if (digitalRead(buttonPin1) == HIGH) {}
     Color = CRGB::Blue;
-    }
-    if (digitalRead(buttonPin2) == HIGH) {
-      Color = CRGB::Red;
-    }
-  }
+    if (digitalRead(buttonPin2) == HIGH) {}
+*/  if (ColorRecieve == 82) {Color = CRGB::Red;}
+    if (ColorRecieve == 66) {Color = CRGB::Blue;}
+    if (ColorRecieve == 71) {Color = CRGB::Green;}
+    if (ColorRecieve == 80) {Color = CRGB::Purple;}
+    if (Color == 0) {return;}
   
   long PatternOut = random(4);
   long PatternIn = random(5);
@@ -366,7 +376,6 @@ void loop() {
     leds[Sense(63)] = Color; leds[72] = Color; leds[81] = Color;
     FastLED.show();
     delay(100);
-    
     leds[3] = CRGB::Black; leds[4] = CRGB::Black; leds[6] = CRGB::Black; leds[7] = CRGB::Black; leds[10] = CRGB::Black;
     leds[13] = CRGB::Black; leds[40] = CRGB::Black; leds[44] = CRGB::Black; leds[47] = CRGB::Black; leds[Sense(54)] = CRGB::Black; 
     leds[Sense(57)] = CRGB::Black; leds[72] = CRGB::Black; leds[75] = CRGB::Black; leds[78] = CRGB::Black; leds[81] = CRGB::Black;
@@ -393,8 +402,11 @@ void loop() {
     leds[Sense(59)] = CRGB::Black; leds[76] = CRGB::Black;
     FastLED.show();
     delay(300);
-    
-    }
+    }  
+  if (ColorRecieve == 82) {Color = CRGB::Red;}
+  if (ColorRecieve == 66) {Color = CRGB::Blue;}
+
+
 }
 //Index               Values may not be absolute due to neglect
 //function            Code Line
@@ -410,4 +422,4 @@ void loop() {
 //Block scroll        250
 //Scroll in left      286
 //Scroll in right     310
-//Exit Patterns       342
+//Exit Patterns       348
