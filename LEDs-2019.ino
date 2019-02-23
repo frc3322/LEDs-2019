@@ -152,16 +152,20 @@ void Blink() {
 void loop() {
   // put your main code here, to run repeatedly: 
   
-/*  while (Color == 0) {//color select. Use for alliance
+  while (Color == 0) {//color select. Use for alliance
 
-    if (digitalRead(buttonPin1) == HIGH) {}
-    Color = CRGB::Blue;
-    if (digitalRead(buttonPin2) == HIGH) {}
-*/  if (ColorRecieve == 82) {Color = CRGB::Red;}
-    if (ColorRecieve == 66) {Color = CRGB::Blue;}
-    if (ColorRecieve == 71) {Color = CRGB::Green;}
-    if (ColorRecieve == 80) {Color = CRGB::Purple;}
-    if (Color == 0) {return;}
+    if (digitalRead(buttonPin1) == HIGH) {Color = CRGB::Blue;}
+   
+    if (digitalRead(buttonPin2) == HIGH) {Color = CRGB::Red;}
+  // if (ColorRecieve == 82) 
+   // if (ColorRecieve == 66) {Color = CRGB::Blue;}
+   // if (ColorRecieve == 71) {Color = CRGB::Green;}
+  //  if (ColorRecieve == 80) {Color = CRGB::Purple;}
+  }
+    if ((digitalRead(buttonPin2) == HIGH) and (digitalRead(buttonPin1) == HIGH)) {
+    Color = CRGB::Green; 
+    }
+      
   
   long PatternOut = random(4);
   long PatternIn = random(5);
@@ -283,9 +287,7 @@ void loop() {
   Scroll(Color, Color, CRGB::Black, CRGB::Black, Color, 12);
   Scroll(Color, CRGB::Black, Color, CRGB::Black, Color, 12);
   Scroll(Color, CRGB::Black, Color, Color, CRGB::Black, 12); //2
-  if ((digitalRead(buttonPin2) == HIGH) and (digitalRead(buttonPin1) == HIGH)) {
-    Color = CRGB::Green; 
-    }  
+
     Scroll(CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black, 12);
 
   }
@@ -405,7 +407,8 @@ void loop() {
     }  
   if (ColorRecieve == 82) {Color = CRGB::Red;}
   if (ColorRecieve == 66) {Color = CRGB::Blue;}
-
+  if (ColorRecieve == 71) {Color = CRGB::Green;}
+  if (ColorRecieve == 80) {Color = CRGB::Purple;}
 
 }
 //Index               Values may not be absolute due to neglect
