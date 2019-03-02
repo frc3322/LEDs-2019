@@ -1,8 +1,7 @@
     #include "FastLED.h"
     #include <Wire.h>
     #define COLOR_ORDER GRB
-const int buttonPin1 = 2;
-const int buttonPin2 = 8;
+const int buttonPin1 = 8;
 long Color = 0;
 int ColorRecieve = 0;
 int LED = 13;
@@ -11,21 +10,11 @@ int LED = 13;
 CRGB blinkBackup[85];
 CRGB leds[85];
 void setup() { 
-  Serial.begin(9600); 
-  pinMode(buttonPin1, INPUT);
-  pinMode(buttonPin2, INPUT);
+  pinMode(buttonPin1, INPUT_PULLUP);
   FastLED.addLeds<WS2811, 5, COLOR_ORDER>(leds, 85); 
   randomSeed(analogRead(0)); 
-  Wire.begin(4); 
-  Wire.onReceive(receiveEvent);
-   Serial.println(ColorRecieve);
   }
 
-void receiveEvent(int bytes) {
- ColorRecieve = Wire.read();
-   Serial.println(ColorRecieve); 
-
-}
 
 int Sense(int InputNum) {
   //Array of lights features alternating direction of lights. This is a fix
@@ -151,20 +140,10 @@ void Blink() {
 
 void loop() {
   // put your main code here, to run repeatedly: 
-  
-  while (Color == 0) {//color select. Use for alliance
-
-    if (digitalRead(buttonPin1) == HIGH) {Color = CRGB::Blue;}
    
-    if (digitalRead(buttonPin2) == HIGH) {Color = CRGB::Red;}
-  // if (ColorRecieve == 82) 
-   // if (ColorRecieve == 66) {Color = CRGB::Blue;}
-   // if (ColorRecieve == 71) {Color = CRGB::Green;}
-  //  if (ColorRecieve == 80) {Color = CRGB::Purple;}
-  }
-    if ((digitalRead(buttonPin2) == HIGH) and (digitalRead(buttonPin1) == HIGH)) {
-    Color = CRGB::Green; 
-    }
+    if (digitalRead(buttonPin1) == HIGH) {Color = CRGB::Blue;}
+    else {Color = CRGB::Red;}
+ 
       
   
   long PatternOut = random(4);
@@ -235,7 +214,7 @@ void loop() {
      ScrollV(Color,2,1);  
      ScrollV(CRGB::Black,1,1);  FastLED.show(); delay(250);//2
   }
-
+  
   if (PatternIn == 1) {//scroll in from both sides
 
   Sclorr(CRGB::Black,Color,CRGB::Black,Color,CRGB::Black,8,1);//3, the right side
@@ -339,6 +318,9 @@ void loop() {
   Sclorr(Color, CRGB::Black, Color, CRGB::Black, Color, 0);//3
   Sclorr(CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black,0);
   }
+
+
+
    
   delay(1000);
   SetupBlink();
@@ -409,7 +391,6 @@ void loop() {
   if (ColorRecieve == 66) {Color = CRGB::Blue;}
   if (ColorRecieve == 71) {Color = CRGB::Green;}
   if (ColorRecieve == 80) {Color = CRGB::Purple;}
-
 }
 //Index               Values may not be absolute due to neglect
 //function            Code Line
