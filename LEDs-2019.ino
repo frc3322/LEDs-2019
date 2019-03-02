@@ -318,9 +318,6 @@ void loop() {
   Sclorr(Color, CRGB::Black, Color, CRGB::Black, Color, 0);//3
   Sclorr(CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black, CRGB::Black,0);
   }
-
-
-
    
   delay(1000);
   SetupBlink();
